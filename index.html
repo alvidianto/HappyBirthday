@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 Happy Birthday</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/4206/4206277.png">
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+
+<body>
+
+<!-- ================= LOADING ================= -->
+
+<div id="loading-screen">
+
+    <div class="loader">
+
+        <div class="gift-loader">
+            🎁
+        </div>
+
+        <h2>Preparing Your Surprise...</h2>
+
+        <div class="loading-bar">
+            <div id="progress"></div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= BACKGROUND ================= -->
+
+<div class="stars"></div>
+<div class="stars2"></div>
+<div class="stars3"></div>
+
+<!-- ================= MAIN ================= -->
+
+<div id="main" class="hidden">
+
+    <div class="container">
+
+        <h1 class="title">
+            Ada hadiah buat kamu 🎉
+        </h1>
+
+        <p class="subtitle">
+            Tap amplopnya ya ❤️
+        </p>
+
+        <!-- Envelope -->
+
+        <div id="envelope">
+
+            <div class="front"></div>
+
+            <div class="back"></div>
+
+            <div class="letter">
+
+                <div class="letter-content">
+
+                    <h2>🎂 Selamat Ulang Tahun 🎂</h2>
+
+                    <p id="typing-text"></p>
+
+                </div>
+
+            </div>
+
+            <div class="flap"></div>
+
+        </div>
+
+        <!-- Replay -->
+
+        <button id="replayBtn">
+            🔁 Replay
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ================= FIREWORK CANVAS ================= -->
+
+<canvas id="fireworks"></canvas>
+
+<!-- ================= AUDIO ================= -->
+
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ================= SCRIPT ================= -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
