@@ -1,0 +1,744 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: "Poppins", sans-serif;
+    background: #050816;
+    color: white;
+}
+
+/* ================= LOADING SCREEN ================= */
+
+#loading-screen {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #1b1740, #050816);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: 1s ease;
+}
+
+#loading-screen.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loader {
+    width: 90%;
+    max-width: 350px;
+    text-align: center;
+}
+
+.gift-loader {
+    font-size: 80px;
+    animation: floating 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(255,255,255,.5));
+}
+
+.loader h2 {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.loading-bar {
+    width: 100%;
+    height: 12px;
+    background: rgba(255,255,255,.15);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 25px;
+}
+
+#progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        #ff7eb3,
+        #ff758c,
+        #ffd166
+    );
+    border-radius: inherit;
+    transition: .2s;
+}
+
+/* ================= BACKGROUND STARS ================= */
+
+.stars,
+.stars2,
+.stars3 {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+.stars {
+    background-image:
+    radial-gradient(circle, white 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: .35;
+    animation: starsMove 30s linear infinite;
+}
+
+.stars2 {
+    background-image:
+    radial-gradient(circle, #ffd6e7 1.5px, transparent 1.5px);
+    background-size: 90px 90px;
+    opacity: .25;
+    animation: starsMove 45s linear infinite;
+}
+
+.stars3 {
+    background-image:
+    radial-gradient(circle, #fff 2px, transparent 2px);
+    background-size: 140px 140px;
+    opacity: .15;
+    animation: starsMove 60s linear infinite;
+}
+
+@keyframes starsMove {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-200px);
+    }
+
+}
+
+
+/* ================= MAIN ================= */
+
+#main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+}
+
+.hidden {
+    display: none;
+}
+
+.container {
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+}
+
+
+.title {
+    font-size: clamp(25px,5vw,40px);
+    font-weight: 700;
+    margin-bottom: 10px;
+    animation: fadeDown 1s ease;
+}
+
+
+.subtitle {
+    font-size: 15px;
+    opacity: .8;
+    margin-bottom: 40px;
+    animation: fadeDown 1.3s ease;
+}
+
+
+/* ================= ANIMATION BASIC ================= */
+
+@keyframes floating {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+}
+
+
+@keyframes fadeDown {
+
+    from {
+        opacity:0;
+        transform:translateY(-30px);
+    }
+
+    to {
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* ================= ENVELOPE ================= */
+
+#envelope {
+    width: 280px;
+    height: 190px;
+    position: relative;
+    margin: 0 auto;
+    cursor: pointer;
+    perspective: 1000px;
+    filter: drop-shadow(0 20px 35px rgba(0,0,0,.4));
+    transition: .5s ease;
+}
+
+
+#envelope:hover {
+    transform: translateY(-10px);
+}
+
+
+/* bagian belakang amplop */
+
+.back {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        #ff8fab,
+        #ff4d6d
+    );
+    border-radius: 15px;
+    z-index: 1;
+}
+
+
+/* bagian depan amplop */
+
+.front {
+    position: absolute;
+    bottom:0;
+    width:100%;
+    height:75%;
+    background:
+    linear-gradient(
+        135deg,
+        #ff758f,
+        #ff4d6d
+    );
+    clip-path: polygon(
+        0 0,
+        50% 55%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+    border-radius: 0 0 15px 15px;
+    z-index:4;
+}
+
+
+/* tutup amplop */
+
+.flap {
+
+    position:absolute;
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ffb3c6,
+        #ff758f
+    );
+
+    clip-path:
+    polygon(
+        0 0,
+        50% 50%,
+        100% 0
+    );
+
+    transform-origin:top;
+    transition:1s ease;
+    z-index:5;
+
+}
+
+
+/* ================= LETTER ================= */
+
+.letter {
+
+    position:absolute;
+    width:90%;
+    height:170px;
+    left:5%;
+    bottom:10px;
+
+    background:white;
+    color:#333;
+
+    border-radius:15px;
+
+    z-index:3;
+
+    transform:translateY(0);
+
+    transition:1s ease;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.25);
+
+    overflow:hidden;
+
+}
+
+
+.letter-content {
+
+    padding:25px 20px;
+
+}
+
+
+.letter h2 {
+
+    font-size:18px;
+    color:#ff4d6d;
+    margin-bottom:15px;
+
+}
+
+
+.letter p {
+
+    font-size:13px;
+    line-height:1.7;
+    color:#555;
+
+}
+
+
+/* ================= OPEN STATE ================= */
+
+
+/* saat amplop dibuka */
+
+#envelope.open .flap {
+
+    transform:rotateX(180deg);
+
+    z-index:2;
+
+}
+
+
+#envelope.open .letter {
+
+    transform:translateY(-150px);
+
+    z-index:6;
+
+}
+
+
+/* efek cahaya saat terbuka */
+
+#envelope.open {
+
+    animation:
+    envelopeGlow 1.5s infinite alternate;
+
+}
+
+
+@keyframes envelopeGlow {
+
+    from {
+
+        filter:
+        drop-shadow(
+        0 0 10px #ff8fab
+        );
+
+    }
+
+
+    to {
+
+        filter:
+        drop-shadow(
+        0 0 35px #ffd166
+        );
+
+    }
+
+}
+
+
+/* ================= REPLAY BUTTON ================= */
+
+#replayBtn {
+
+    margin-top:80px;
+
+    padding:14px 35px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff758f,
+        #ff4d6d
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    opacity:0;
+
+    transform:
+    translateY(20px);
+
+    transition:.5s ease;
+
+    box-shadow:
+    0 10px 25px rgba(255,77,109,.4);
+
+}
+
+
+#replayBtn.show {
+
+    opacity:1;
+
+    transform:
+    translateY(0);
+
+}
+
+
+#replayBtn:active {
+
+    transform:
+    scale(.9);
+
+}
+
+/* ================= FIREWORK CANVAS ================= */
+
+#fireworks {
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    pointer-events:none;
+
+    z-index:10;
+
+}
+
+
+/* ================= CARD EFFECT ================= */
+
+.letter::before {
+
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+
+    height:120px;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(255,182,193,.5),
+        transparent
+    );
+
+    top:-50px;
+
+    right:-40px;
+
+}
+
+
+.letter::after {
+
+    content:"❤️";
+
+    position:absolute;
+
+    bottom:15px;
+
+    right:20px;
+
+    font-size:25px;
+
+    animation:
+    heartFloat 2s infinite;
+
+}
+
+
+@keyframes heartFloat {
+
+    0%,100% {
+
+        transform:
+        translateY(0);
+
+    }
+
+
+    50% {
+
+        transform:
+        translateY(-10px);
+
+    }
+
+}
+
+
+
+/* ================= PARTICLE GLOW ================= */
+
+#envelope::before {
+
+    content:"";
+
+    position:absolute;
+
+    inset:-20px;
+
+    border-radius:50px;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(255,215,0,.25),
+    transparent 60%
+    );
+
+    opacity:0;
+
+    transition:.5s;
+
+}
+
+
+#envelope.open::before {
+
+    opacity:1;
+
+    animation:
+    pulseGlow 1.5s infinite;
+
+}
+
+
+@keyframes pulseGlow {
+
+    0% {
+
+        transform:scale(.8);
+
+        opacity:.4;
+
+    }
+
+
+    50% {
+
+        transform:scale(1.2);
+
+        opacity:.8;
+
+    }
+
+
+    100% {
+
+        transform:scale(.8);
+
+        opacity:.4;
+
+    }
+
+}
+
+
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+
+@media(max-width:600px){
+
+
+    .container {
+
+        width:92%;
+
+    }
+
+
+    .title {
+
+        font-size:28px;
+
+    }
+
+
+    .subtitle {
+
+        font-size:14px;
+
+        margin-bottom:35px;
+
+    }
+
+
+    #envelope {
+
+        width:260px;
+
+        height:175px;
+
+    }
+
+
+    .letter {
+
+        height:155px;
+
+    }
+
+
+    .letter-content {
+
+        padding:20px 15px;
+
+    }
+
+
+    .letter h2 {
+
+        font-size:16px;
+
+    }
+
+
+    .letter p {
+
+        font-size:12px;
+
+    }
+
+
+    #replayBtn {
+
+        margin-top:70px;
+
+        padding:12px 30px;
+
+    }
+
+
+}
+
+
+
+@media(max-width:360px){
+
+
+    .gift-loader {
+
+        font-size:65px;
+
+    }
+
+
+    .loader h2 {
+
+        font-size:15px;
+
+    }
+
+
+    #envelope {
+
+        width:230px;
+
+        height:150px;
+
+    }
+
+
+    .title {
+
+        font-size:24px;
+
+    }
+
+
+}
+
+
+
+/* ================= SMOOTHNESS ================= */
+
+
+button {
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+* {
+
+    -webkit-user-select:none;
+
+    user-select:none;
+
+}
+
+
+body {
+
+    touch-action:manipulation;
+
+}
